@@ -1,0 +1,461 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1" />
+<title>Prozperia Travel Academy — Premium</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600;700&family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+<style>
+:root{
+  --blue:#3EA8FF; /* from images */
+  --violet:#8C4BFF;
+  --orange:#FF8A4C;
+  --teal:#31D1C0;
+  --warm:#F7F4EF;
+  --dark:#0E0E10;
+  --muted:#6B6B6B;
+  --card:#FFFFFF;
+  --radius:16px;
+  --max-w:1200px;
+}
+*{box-sizing:border-box}
+html,body{height:100%;margin:0;font-family:'Poppins',system-ui,Arial;color:var(--dark);background:linear-gradient(180deg,#f2f6fb 0%, #f8fbfc 100%);}
+#particles{position:fixed;inset:0;z-index:0;pointer-events:none}
+.wrap{position:relative;z-index:5;max-width:var(--max-w);margin:0 auto;padding:32px}
+header{display:flex;align-items:center;justify-content:space-between;gap:20px;padding:12px 0}
+.logo{font-family:'Playfair Display',serif;font-size:1.25rem;color:var(--violet);font-weight:700}
+nav{display:flex;gap:16px}
+nav a{color:var(--dark);text-decoration:none;font-weight:600}
+
+/* HERO */
+.hero{display:grid;grid-template-columns:1fr 460px;gap:36px;align-items:center;padding:48px 0 18px}
+.hero-card{background:linear-gradient(180deg,#ffffff, #fffaf8);padding:28px;border-radius:20px;box-shadow:0 15px 40px rgba(22,28,40,0.08);border:1px solid rgba(16,22,34,0.04)}
+.kicker{display:inline-block;padding:8px 14px;border-radius:999px;background:linear-gradient(90deg,var(--violet),var(--blue));color:white;font-weight:700;margin-bottom:12px}
+.h-title{font-family:'Playfair Display',serif;font-size:2.4rem;margin:8px 0;background:linear-gradient(90deg,var(--violet),var(--blue));-webkit-background-clip:text;-webkit-text-fill-color:transparent}
+.h-lead{color:var(--muted);font-size:1.05rem;margin-bottom:18px}
+.cta-row{display:flex;gap:12px;align-items:center}
+.btn{padding:12px 18px;border-radius:12px;font-weight:700;cursor:pointer;border:0}
+.btn-primary{background:linear-gradient(90deg,var(--orange),#ff7a3a);color:white;box-shadow:0 12px 30px rgba(255,138,76,0.14)}
+.btn-outline{background:transparent;border:2px solid rgba(14,14,16,0.06);color:var(--dark)}
+.note{color:var(--muted);font-size:0.95rem;margin-top:10px}
+
+/* Mockup */
+.mockup{width:420px;border-radius:18px;overflow:hidden;box-shadow:0 30px 60px rgba(14,14,16,0.12);border:1px solid rgba(14,14,16,0.04)}
+.mockup img{width:100%;display:block}
+
+/* IMAGE STRIP */
+.strip{display:flex;gap:18px;justify-content:center;margin-top:-44px;margin-bottom:34px;flex-wrap:wrap}
+.strip img{width:220px;border-radius:14px;box-shadow:0 18px 40px rgba(10,10,10,0.12);transition:transform .35s}
+.strip img:hover{transform:translateY(-8px) scale(1.03)}
+
+/* SECTIONS */
+.section{padding:36px 0}
+.center{text-align:center}
+.section-title{font-size:28px;margin-bottom:10px;color:var(--dark);font-weight:700}
+.lead{color:var(--muted);max-width:900px;margin:0 auto 18px}
+
+/* TABS */
+.tabs{display:flex;gap:12px;justify-content:center;margin-bottom:22px;flex-wrap:wrap}
+.tab{background:var(--card);padding:12px 18px;border-radius:12px;border:1px solid rgba(14,14,16,0.06);cursor:pointer;font-weight:700}
+.tab.active{background:linear-gradient(90deg,var(--violet),var(--blue));color:white;box-shadow:0 10px 30px rgba(58,124,165,0.08)}
+.tab-content{background:var(--card);padding:22px;border-radius:14px;box-shadow:0 12px 30px rgba(22,28,40,0.06);display:none}
+.tab-content.active{display:block}
+.flex{display:flex;gap:24px;align-items:flex-start}
+.side{width:360px}
+
+/* Package cards */
+.tier{display:flex;gap:18px;align-items:flex-start}
+.tier-card{flex:1;background:linear-gradient(180deg,#fff,#fff);padding:20px;border-radius:14px;border:1px solid rgba(14,14,16,0.04);box-shadow:0 16px 40px rgba(22,28,40,0.06)}
+.tier-head{display:flex;justify-content:space-between;align-items:center;margin-bottom:12px}
+.tier-title{font-weight:800;color:var(--violet)}
+.tier-price{font-weight:900;color:var(--blue)}
+.tier-desc{color:var(--muted);margin-bottom:12px}
+.tier-list{padding-left:18px;color:var(--muted);margin-bottom:12px}
+.mock-collage{display:flex;gap:10px}
+.mock-collage img{width:120px;border-radius:10px;box-shadow:0 12px 30px rgba(10,10,10,0.14);transform:translateY(0);transition:transform .4s}
+.mock-collage img:hover{transform:translateY(-8px) rotate(-2deg) scale(1.03)}
+
+/* Features grid */
+.features{display:grid;grid-template-columns:repeat(3,1fr);gap:18px;margin-top:18px}
+.feature{background:var(--card);padding:18px;border-radius:12px;box-shadow:0 10px 30px rgba(22,28,40,0.05)}
+.feature h4{margin:0 0 8px}
+
+/* FAQ */
+.faq-item{background:transparent;border-radius:12px;padding:14px;margin-bottom:12px;border:1px solid rgba(14,14,16,0.04)}
+.faq-item h4{margin:0;cursor:pointer;display:flex;justify-content:space-between;align-items:center}
+.faq-item p{margin:10px 0 0;color:var(--muted);display:none}
+.faq-item.active p{display:block}
+
+/* TESTIMONIALS */
+.test-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:18px;margin-top:12px}
+.test-card{background:linear-gradient(180deg,#fff,#fffbf9);padding:20px;border-radius:12px;border:1px solid rgba(58,124,165,0.06);box-shadow:0 10px 30px rgba(58,124,165,0.06)}
+
+/* CTA */
+.primary-cta{margin-top:22px;display:flex;justify-content:center}
+
+@media(max-width:1000px){
+  .hero{grid-template-columns:1fr;}
+  .mockup{width:100%;}
+  .strip img{width:180px}
+  .flex{flex-direction:column}
+  .side{width:100%}
+  .test-grid{grid-template-columns:1fr}
+}
+</style>
+</head>
+<body>
+<canvas id="particles"></canvas>
+<div class="wrap">
+  <header>
+    <div class="logo">Prozperia Travel Academy</div>
+    <nav aria-label="main-nav">
+      <a href="#about">About</a>
+      <a href="#tiers">Packages</a>
+      <a href="#faq">FAQ</a>
+      <a href="#testimonials">Testimonials</a>
+    </nav>
+  </header>
+
+  <!-- HERO -->
+  <section class="hero">
+    <div class="hero-card">
+      <div class="kicker">Premium • Practical • Profitable</div>
+      <h1 class="h-title">Unlock the World. Upgrade Your Life.</h1>
+      <p class="h-lead">We train curious travelers to turn exploration into income, influence, and lasting skills. Warm, ethical, and practical — designed for real people who want travel to change their future.</p>
+      <div class="cta-row">
+        <button class="btn btn-primary" onclick="document.getElementById('pathfinderTab').scrollIntoView({behavior:'smooth'})">Enroll — Pathfinder $50</button>
+        <a class="btn btn-outline" href="https://youtu.be/YoCasA-6pNU?si=yt6YYgDsPj8QnqcY" target="_blank">▶ See the Academy in 5 minutes</a>
+      </div>
+      <div class="note">Lifetime access • Certification pathway • Optional Partnership Program</div>
+    </div>
+
+    <div class="mockup" aria-hidden="false">
+      <img src="https://imgur.com/ynEZPWQ.jpg" alt="academy preview"/>
+    </div>
+  </section>
+
+  <!-- MOCKUP STRIP -->
+  <div class="strip">
+
+    <img src="https://imgur.com/WK1cN17.jpg" alt="mock3">
+    <img src="https://imgur.com/NgVEiv0.jpg" alt="mock4">
+    <img src="https://imgur.com/CRHqKYw.jpg" alt="mock5">
+  </div>
+
+  <!-- ABOUT / VISION / MISSION -->
+  <section id="about" class="section">
+    <h2 class="section-title">PROZPERIA TRAVEL ACADEMY</h2>
+    <p class="lead center">We believe travel transforms who you are. Our vision is to help you create a life where travel is not just something you dream about, but something you live, share, and earn from with confidence and purpose.</p>
+
+    <div class="tabs" role="tablist" aria-label="About tabs">
+      <div class="tab active" data-tab="vision">Vision</div>
+      <div class="tab" data-tab="mission">Mission</div>
+      <div class="tab" data-tab="story">About</div>
+      <div class="tab" data-tab="core">Core Principles</div>
+    </div>
+
+    <div id="vision" class="tab-content active">
+      <p><strong>Vision:</strong> We believe travel transforms who you are, how you see the world, and what’s possible for your future. Our vision is to help you create a life where travel is not just something you dream about, but something you live, share, and earn from with confidence and purpose.</p>
+    </div>
+
+    <div id="mission" class="tab-content">
+      <p><strong>Mission:</strong> Our mission is to empower curious travelers to turn their love of exploring into knowledge, skills, and income that last a lifetime. We provide accessible, actionable, and ethical learning experiences that open doors to professional and personal growth through travel.</p>
+    </div>
+
+    <div id="story" class="tab-content">
+      <p><strong>About:</strong> Most people see travel as a reward, a vacation after working hard. But some see it as a spark, a way to learn, connect, and grow. Prozperia Travel Academy exists for travelers who don’t just want trips, they want travel to shape who they are and how they thrive. Here, you gain more than memories. You gain knowledge, skills, and opportunities that can’t be taken away. Travel stops being a dream. It becomes a language you speak, a career you shape, and a lifestyle you choose, all guided by curiosity and discovery.</p>
+    </div>
+
+    <div id="core" class="tab-content">
+      <p><strong>Core Principles:</strong></p>
+      <ul>
+        <li>Travel as Empowerment: Not escape, but a path to growth and opportunity.</li>
+        <li>Exploration → Education → Opportunity: Every step builds knowledge and freedom.</li>
+        <li>Skills That Last: Knowledge and tools no one can take away.</li>
+        <li>Genuine Guidance: No hype or gimmicks, just professional insight.</li>
+        <li>Personalized Learning: Every learner feels seen, supported, and plugged in.</li>
+      </ul>
+    </div>
+  </section>
+
+  <!-- VALUE & BENEFITS -->
+  <section class="section">
+    <h2 class="section-title center">Why Choose Prozperia Academy?</h2>
+    <p class="lead center">Earn inside the travel space, build monetizable digital products, promote the Travel Club ethically, and develop tourism-related income streams.</p>
+
+    <div class="features">
+      <div class="feature"><h4>Earn in Travel</h4><p>Build monetizable digital products and services.</p></div>
+      <div class="feature"><h4>Content & Creative</h4><p>Phone photography, CapCut workflows, Canva systems.</p></div>
+      <div class="feature"><h4>Business & Brand</h4><p>Non-salesy marketing, offer creation, and positioning.</p></div>
+    </div>
+
+    <div style="margin-top:22px" class="center">
+      <p style="max-width:900px;margin:0 auto;color:var(--muted)"><strong>What students gain:</strong> Make money in the travel space without needing your own platform; use content, digital products, and marketing to earn online; promote the Travel Club authentically; become confident travel educators; and build small tourism-related income streams.</p>
+    </div>
+  </section>
+
+  <!-- PACKAGES / TABS -->
+  <section id="tiers" class="section">
+    <h2 class="section-title center">Travel Academy Packages</h2>
+    <p class="lead center">Three structured pathways — start where you are and grow into tourism, content, and leadership.</p>
+
+    <div class="tabs">
+      <div class="tab active" data-tab="pathfinder">Pathfinder — $50</div>
+      <div class="tab" data-tab="globetrekker">Globe Trekker — $250</div>
+      <div class="tab" data-tab="worldnav">World Navigator — $600</div>
+    </div>
+
+    <!-- Pathfinder -->
+    <div id="pathfinder" class="tab-content active">
+      <div class="flex">
+        <div class="tier-card">
+          <div class="tier-head"><div class="tier-title">Pathfinder Access</div><div class="tier-price">$50</div></div>
+          <div class="tier-desc">Entry-level, accessible, beginner friendly. Built for people who want to travel better, start posting, and share the Travel Club confidently without feeling salesy.</div>
+
+          <div class="mock-collage" style="margin-top:14px;margin-bottom:14px">
+            <img src="https://imgur.com/WK1cN17.jpg" alt="pf1">
+            <img src="https://imgur.com/NgVEiv0.jpg" alt="pf2">
+            <img src="https://imgur.com/CRHqKYw.jpg" alt="pf3">
+          </div>
+
+          <ul class="tier-list">
+            <li>Travel Basics 101: Planning, Documentation & Safety</li>
+            <li>Visa & Passport Mastery: Step-by-Step Forms & Requirements</li>
+            <li>Global Etiquette & Cultural Expectations</li>
+            <li>Phone Photography for Travel Content</li>
+            <li>Cap Cut Basics for Editing Travel Reels</li>
+            <li>Canva for Beginners: Creating Simple Travel Graphics</li>
+            <li>Understanding the Travel Club: How to Share the Lifestyle (Not Sell It)</li>
+            <li>Building Confidence in Social Media Without Feeling Salesy</li>
+          </ul>
+
+          <div style="display:flex;gap:12px">
+            <button class="btn btn-primary">Enroll — $50</button>
+            <button class="btn btn-outline" onclick="window.open('https://youtu.be/YoCasA-6pNU?si=yt6YYgDsPj8QnqcY','_blank')">Watch 5-min Overview</button>
+          </div>
+        </div>
+
+        <aside class="side">
+          <div style="background:linear-gradient(90deg,var(--violet),var(--blue));padding:16px;border-radius:12px;color:white;margin-bottom:12px">
+            <strong>Bonuses</strong>
+            <ul style="margin:8px 0 0;padding-left:18px;color:rgba(255,255,255,0.95)">
+              <li>Travel Story Starters (reel hooks + captions)</li>
+              <li>30 Days of Travel Content Prompts</li>
+              <li>Beginner Digital Tools Checklist</li>
+            </ul>
+          </div>
+
+          <div style="background:rgba(14,14,16,0.03);padding:14px;border-radius:12px">
+            <strong>After completion</strong>
+            <ul style="margin:8px 0 0;padding-left:18px;color:var(--muted)">
+              <li>Post better content</li>
+              <li>Explain travel rules clearly</li>
+              <li>Create basic travel graphics</li>
+            </ul>
+          </div>
+        </aside>
+      </div>
+    </div>
+
+    <!-- Globe Trekker -->
+    <div id="globetrekker" class="tab-content">
+      <div class="flex">
+        <div class="tier-card">
+          <div class="tier-head"><div class="tier-title">Globe Trekker Access</div><div class="tier-price">$250</div></div>
+          <div class="tier-desc">Mid-level, skill-building, income-creating. Start building products and a brand.</div>
+
+          <div class="mock-collage" style="margin-top:14px;margin-bottom:14px">
+            <img src="https://imgur.com/WK1cN17.jpg" alt="gt1">
+            <img src="https://imgur.com/NgVEiv0.jpg" alt="gt2">
+            <img src="https://imgur.com/CRHqKYw.jpg" alt="gt3">
+          </div>
+
+          <ul class="tier-list">
+            <li>Digital Product Creation for Travel (E-books, Guides, Checklists)</li>
+            <li>How to Create & Sell Itineraries (PDF + Canva Templates)</li>
+            <li>Setting Up a Digital Store (Linktree, Stan Store, Payhip, Shopify Lite)</li>
+            <li>Building Simple Landing Pages for Travel Offers</li>
+            <li>Canva Advanced: Branding, Templates & Product Covers</li>
+            <li>CapCut Advanced Travel Editing (Hooks, Transitions, Storytelling)</li>
+            <li>Travel Blogging & Micro-Influencing: Getting Started</li>
+            <li>Soft Selling for Travel Club: Attraction Marketing, Story Selling & Value Posts</li>
+            <li>How to Curate Travel Packages Without Being a Travel Agent (Using Travel Club)</li>
+          </ul>
+
+          <div style="display:flex;gap:12px">
+            <button class="btn btn-primary">Enroll — $250</button>
+            <button class="btn btn-outline" onclick="window.open('https://youtu.be/YoCasA-6pNU?si=yt6YYgDsPj8QnqcY','_blank')">Watch 5-min Overview</button>
+          </div>
+        </div>
+
+        <aside class="side">
+          <div style="background:linear-gradient(90deg,var(--violet),var(--blue));padding:16px;border-radius:12px;color:white;margin-bottom:12px">
+            <strong>Bonuses</strong>
+            <ul style="margin:8px 0 0;padding-left:18px;color:rgba(255,255,255,0.95)">
+              <li>90 Days of Travel Reels Hooks</li>
+              <li>30 Editable Canva Templates</li>
+              <li>Digital Product Launch Checklist</li>
+            </ul>
+          </div>
+
+          <div style="background:rgba(14,14,16,0.03);padding:14px;border-radius:12px">
+            <strong>After completion</strong>
+            <ul style="margin:8px 0 0;padding-left:18px;color:var(--muted)">
+              <li>Build & sell digital products</li>
+              <li>Monetize travel knowledge</li>
+              <li>Attract Travel Club prospects effortlessly</li>
+            </ul>
+          </div>
+        </aside>
+      </div>
+    </div>
+
+    <!-- World Navigator -->
+    <div id="worldnav" class="tab-content">
+      <div class="flex">
+        <div class="tier-card">
+          <div class="tier-head"><div class="tier-title">World Navigator Access</div><div class="tier-price">$600</div></div>
+          <div class="tier-desc">High-level, business-building, transformational. Learn to host retreats, secure sponsorships and scale a travel business ethically.</div>
+
+          <div class="mock-collage" style="margin-top:14px;margin-bottom:14px">
+            <img src="https://imgur.com/WK1cN17.jpg" alt="wn1">
+            <img src="https://imgur.com/NgVEiv0.jpg" alt="wn2">
+            <img src="https://imgur.com/CRHqKYw.jpg" alt="wn3">
+          </div>
+
+          <ul class="tier-list">
+            <li>Becoming a Travel Influencer: Sponsorships, Affiliates & Brand Deals</li>
+            <li>How to Become a Certified Tour Guide or Local Host (Country-by-Country)</li>
+            <li>Launching Travel Retreats or Wellness Tourism Experiences</li>
+            <li>How to Build a Travel-Focused Personal Brand That Sells</li>
+            <li>Public Speaking & Pitching the Travel Club to Groups</li>
+            <li>Scaling Your Travel Income Streams: Digital, Content, Partnerships</li>
+            <li>Sustaining a Travel Business Long-Term Without Burnout</li>
+          </ul>
+
+          <div style="display:flex;gap:12px">
+            <button class="btn btn-primary">Enroll — $600</button>
+            <button class="btn btn-outline" onclick="window.open('https://youtu.be/YoCasA-6pNU?si=yt6YYgDsPj8QnqcY','_blank')">Watch 5-min Overview</button>
+          </div>
+        </div>
+
+        <aside class="side">
+          <div style="background:linear-gradient(90deg,var(--violet),var(--blue));padding:16px;border-radius:12px;color:white;margin-bottom:12px">
+            <strong>Bonuses</strong>
+            <ul style="margin:8px 0 0;padding-left:18px;color:rgba(255,255,255,0.95)">
+              <li>Done-for-you 50-country etiquette cheat sheets</li>
+              <li>Retreat budgeting template</li>
+              <li>Sponsorship outreach scripts</li>
+            </ul>
+          </div>
+
+          <div style="background:rgba(14,14,16,0.03);padding:14px;border-radius:12px">
+            <strong>After completion</strong>
+            <ul style="margin:8px 0 0;padding-left:18px;color:var(--muted)">
+              <li>Build real tourism-related income streams</li>
+              <li>Host tours, retreats & experiences</li>
+              <li>Land sponsorships and paid collabs</li>
+            </ul>
+          </div>
+        </aside>
+      </div>
+    </div>
+
+  </section>
+
+  <!-- SPECIALIZED COURSES -->
+  <section class="section">
+    <h2 class="section-title center">Specialized Supplement Courses (Add-ons)</h2>
+    <p class="lead center">Add these focused intensives to any pathway</p>
+    <div class="features">
+      <div class="feature"><h4>Wellness Tourism Masterclass</h4></div>
+      <div class="feature"><h4>Retreat Planning Intensive</h4></div>
+      <div class="feature"><h4>Travel Photography Mastery</h4></div>
+      <div class="feature"><h4>Kid Friendly Travel Guidance</h4></div>
+      <div class="feature"><h4>Travel Safety & Women's Solo Travel Essentials</h4></div>
+      <div class="feature"><h4>Global Travel Etiquette for 50 Countries</h4></div>
+    </div>
+  </section>
+
+  <!-- FAQ -->
+  <section id="faq" class="section">
+    <h2 class="section-title center">Frequently Asked Questions</h2>
+    <div class="faq-item"><h4>What level of experience do I need? <span>+</span></h4><p>No experience required. We start from fundamentals and scale to advanced business skills.</p></div>
+    <div class="faq-item"><h4>Is the Partnership Program required? <span>+</span></h4><p>No — partnership is optional. You can simply learn and use the skills for yourself.</p></div>
+    <div class="faq-item"><h4>How long do I have access? <span>+</span></h4><p>Lifetime access to course materials and future updates with your active enrollment.</p></div>
+  </section>
+
+  <!-- TESTIMONIALS + CTA -->
+  <section id="testimonials" class="section">
+    <h2 class="section-title center">Real People • Real Wins</h2>
+    <div class="test-grid">
+      <div class="test-card">"Prozperia gave me the confidence to take my family on their first international trip — and I made money from my travel guide!" — Sarah</div>
+      <div class="test-card">"In 6 weeks I launched a mini travel product — first sale in 10 days." — Jamal</div>
+      <div class="test-card">"Their CapCut templates changed my content strategy — more views, more clients." — Leila</div>
+    </div>
+
+    <div class="primary-cta">
+      <button class="btn btn-primary" onclick="document.querySelector('.tab[data-tab=pathfinder]').click()">Start Pathfinder — $50</button>
+    </div>
+  </section>
+
+  <footer style="text-align:center;padding:28px 0;color:var(--muted)">© <span id="year"></span> Prozperia Travel Academy</footer>
+</div>
+
+<script>
+// Year
+document.getElementById('year').textContent = new Date().getFullYear();
+
+// Tabs logic
+function setActiveTab(tabGroupSelector, tabName){
+  // deactivate
+  document.querySelectorAll(tabGroupSelector+' .tab').forEach(t=>t.classList.remove('active'));
+  document.querySelectorAll(tabGroupSelector+' .tab-content').forEach(c=>c.classList.remove('active'));
+  // activate clicked
+  document.querySelectorAll(tabGroupSelector+' .tab[data-tab="'+tabName+'"]').forEach(b=>b.classList.add('active'));
+  const el = document.getElementById(tabName);
+  if(el) el.classList.add('active');
+}
+
+// generic click handler for current markup
+document.querySelectorAll('.tabs .tab').forEach(btn=>{
+  btn.addEventListener('click',(e)=>{
+    const tab = btn.dataset.tab;
+    // determine which tab group we're in by walking up
+    const container = btn.closest('.section');
+    // first group: about uses data-tab values matching ids vision,mission,story,core
+    // second group: packages uses pathfinder, globetrekker, worldnav
+    // find all tabs in the same section
+    const tabsInSection = container.querySelectorAll('.tab');
+    tabsInSection.forEach(t=>t.classList.remove('active'));
+    btn.classList.add('active');
+    // hide all contents in section
+    container.querySelectorAll('.tab-content').forEach(tc=>tc.classList.remove('active'));
+    // show content by id
+    const content = container.querySelector('#'+tab);
+    if(content) content.classList.add('active');
+  });
+});
+
+// FAQ accordion
+document.querySelectorAll('.faq-item').forEach(item=>{
+  item.addEventListener('click', ()=>{ item.classList.toggle('active'); });
+});
+
+// Particles canvas
+const canvas = document.getElementById('particles');
+const ctx = canvas.getContext('2d');
+let W = canvas.width = innerWidth; let H = canvas.height = innerHeight;
+const parts = []; const COUNT = 90;
+for(let i=0;i<COUNT;i++){ parts.push({x:Math.random()*W,y:Math.random()*H,r:Math.random()*1.8+0.6, vx:(Math.random()-0.5)*0.4, vy:(Math.random()-0.5)*0.4}) }
+function onResize(){W=canvas.width=innerWidth;H=canvas.height=innerHeight}
+addEventListener('resize',onResize);
+function frame(){ctx.clearRect(0,0,W,H);for(const p of parts){p.x+=p.vx;p.y+=p.vy;if(p.x<0)p.x=W;if(p.x>W)p.x=0;if(p.y<0)p.y=H;if(p.y>H)p.y=0;ctx.beginPath();ctx.fillStyle='rgba(50,100,150,0.06)';ctx.arc(p.x,p.y,p.r,0,Math.PI*2);ctx.fill();}requestAnimationFrame(frame);}frame();
+
+</script>
+<div class="credit-cards" style="margin:60px auto; display:flex; justify-content:center; gap:40px; flex-wrap:wrap; max-width:900px;">
+    <img src="https://imgur.com/oRczWqC.jpg" alt="Cards" style="width:200px; height:auto; border-radius:14px; box-shadow:0 6px 16px rgba(0,0,0,0.18);">
+</body>
+</html>
